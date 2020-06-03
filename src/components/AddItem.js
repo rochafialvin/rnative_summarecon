@@ -7,7 +7,8 @@ import {
    TextInput, 
    TouchableOpacity } from 'react-native'
 
-const AddItem = ({navigation}) => {
+// Menerima dua property : navigation , addNewRoutine
+const AddItem = ({navigation, addNewRoutine}) => {
 
    const [title, setTitle] = useState('')
    const [year, setYear] = useState('')
@@ -15,12 +16,20 @@ const AddItem = ({navigation}) => {
    const changeTitle = text => setTitle(text)
    const changeYear = text => setYear(text)
 
-   const addData = () => navigation.navigate('Details')
+   const addData = () => {
+      // urutan penulisan title dan year saat memanggil addNewRoutine tidak boleh tertukar
+      addNewRoutine(title, year)
+      // akan mengkosongkan kedua text input
+      setTitle('')
+      setYear('')
+   }
 
    return (
       <View>
-         <TextInput placeholder="Title" onChangeText={changeTitle} />
-         <TextInput placeholder="Year" onChangeText={changeYear} />
+         {/* 'value' akan menentukan apa yang akan tampil di textinput */}
+         {/* itulah saat kita set ke string kosong pada state 'title' dan 'year' akan membuat textinput menjadi ikut kosong */}
+         <TextInput value={title} placeholder="Title" onChangeText={changeTitle} />
+         <TextInput value={year} placeholder="Year" onChangeText={changeYear} />
          <TouchableOpacity style={styles.btn} onPress={addData} >
             <Text style={styles.btnText} >New Routine</Text>
          </TouchableOpacity>
