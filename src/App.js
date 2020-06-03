@@ -23,12 +23,24 @@ const App = () => {
          <Stack.Navigator
          // screenOptions akan berdampak ke semua screen
             screenOptions = {{
+               // tulisan pada header
                title : 'N E R D F L I X',
                // menghilangkan tombol back
                headerLeft : null,
                // styling untuk text header
                headerTitleStyle: {
-                  textAlign: 'center'
+                  // text rata tengah
+                  textAlign: 'center',
+                  // mengganti jenis font
+                  fontFamily: 'BebasNeue-Regular',
+                  // ukuran text
+                  fontSize: 30,
+                  // warna text
+                  color: 'white'
+               },
+               headerStyle: {
+                  // background header
+                  backgroundColor: '#E50914'
                }
             }}
          >
