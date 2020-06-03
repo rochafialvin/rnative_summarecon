@@ -1,8 +1,8 @@
 
 
-const callme = ({firstName, lastName}) => {
+const callme = (props) => {
 
-   // const {firstName, lastName} = props
+   const {firstName, lastName} = props
 
    // console.log(
    //    `Hello ${firstName}  ${lastName}`
