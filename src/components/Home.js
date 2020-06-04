@@ -9,17 +9,17 @@ import ListItem from './ListItem'
 const Home = ({ navigation }) => {
 
    const [films, setFilms] = useState([
-      {id : 1, title: 'Stranger Things', year : 2016},
-      {id : 2, title: 'Kingdom', year : 2019}
+      {id : 'unq989', title: 'Stranger Things', year : 2016},
+      {id : 'unq998', title: 'Kingdom', year : 2019}
    ])
 
    const addNewRoutine = (title, year) => {
+      if(!title || !year) return Alert.alert("Error", "Please complete your data")
       // setiap film akan disimpan dalam bentuk object, maka setiap menambah film baru, berarti kita menambah object baru
       // dalam pembuatan id kita membutuhkan library untuk membuat string random yang akan bersifat unique
       const newFilm = {id : shortid.generate() , title, year}
       // setFilms harus me-return sebuah array. Caranya adalah array yang lama ditambah dengan object yang baru mengguanakan metode 'titik tiga'. hehe lupa istilahnya eug
       setFilms([...films, newFilm])
-      
    }
 
    return (
@@ -30,6 +30,8 @@ const Home = ({ navigation }) => {
             data={films}
             // item = {id, title, year}
             renderItem={({item}) =>  <ListItem film={item} /> }
+            // setiap list harus memiliki key, dimana valuenya unique dan bertipe data string
+            keyExtractor={(item) => {return item.id} }
          />
       </View>
    )
@@ -39,7 +41,7 @@ export default Home
 
 // jika pada react.js kita bisa memilih variable untuk function di dalam map
 // const renderList = () => {
-//    items.map(film => {return <li>{film.title}</li>})
+//    items.map(film => {return <li key={film.id} >{film.title}</li>})
 // }
 
 // pada react native, best practice kita akan selalu menggunakan {item}

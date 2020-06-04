@@ -1,10 +1,20 @@
 import React from 'react'
 import { View, Text, TouchableOpacity, Button, StyleSheet } from 'react-native'
+import { NavigationContainer, useNavigation } from '@react-navigation/native'
 
 const ListItem = ({film}) => {
    // film = {id, title, year}
+   
+   const navigation = useNavigation()
+   const onPressList = () => {
+      // berpindah screen dengan membawa sebuah data (object)
+      // data akan diakses di object route
+      navigation.navigate('Details', {film})
+   }
+
+
    return (
-      <TouchableOpacity style={styles.listItem} >
+      <TouchableOpacity onPress={onPressList} style={styles.listItem} >
          <View style={styles.listItemView} >
             <View>
                <Text style={styles.listTitle}>{film.title}</Text>
