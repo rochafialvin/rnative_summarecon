@@ -22,6 +22,18 @@ const Home = ({ navigation }) => {
       setFilms([...films, newFilm])
    }
 
+   const deleteRoutine = (id) => {
+      // id = efg
+      // prevState = films = [ {id: abc}, {id: efg }, {id : xyz}  ]
+      
+      // ketika proses update state membutuhkan 'state' itu sendiri saat pemrosesan
+      // maka function set yang digunakan harus menerima function, function ini akan menerima satu inputan berupa state
+      setFilms((prevState) => {
+         return prevState.filter( film => film.id !== id )
+      })
+
+   }
+
    return (
       <View>
          <AddItem addNewRoutine={addNewRoutine} />
@@ -29,7 +41,7 @@ const Home = ({ navigation }) => {
             // films = [ {id, title, year}, {}, {} ]
             data={films}
             // item = {id, title, year}
-            renderItem={({item}) =>  <ListItem film={item} /> }
+            renderItem={({item}) =>  <ListItem deleteRoutine={deleteRoutine} film={item} /> }
             // setiap list harus memiliki key, dimana valuenya unique dan bertipe data string
             keyExtractor={(item) => {return item.id} }
          />

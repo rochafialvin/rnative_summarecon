@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text, TouchableOpacity, Button, StyleSheet } from 'react-native'
 import { NavigationContainer, useNavigation } from '@react-navigation/native'
 
-const ListItem = ({film}) => {
+const ListItem = ({film, deleteRoutine}) => {
    // film = {id, title, year}
    
    const navigation = useNavigation()
@@ -20,7 +20,7 @@ const ListItem = ({film}) => {
                <Text style={styles.listTitle}>{film.title}</Text>
                <Text style={styles.listYear}>{film.year}</Text>
             </View>
-            <Button title="finish" color="red" />
+            <Button title="finish" color="red" onPress={ () => deleteRoutine(film.id) } />
          </View>
       </TouchableOpacity>
    )
